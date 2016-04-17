@@ -31,6 +31,8 @@ class Repository(object):
         try:
             cursor.execute(sql, prms)
             return cursor.fetchall()
+        except MySQLdb.IntegrityError as e:
+            raise DbException('error, {0}'.format(e))
         except Exception as e:
             raise
         finally:
