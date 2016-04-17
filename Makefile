@@ -4,6 +4,12 @@ init:
 test:
 	python -m unittest discover
 
+test_model:
+	python -m unittest test.test_model
+
+test_db:
+	python -m unittest test.test_repository
+
 # ==============
 # Database
 
@@ -42,4 +48,5 @@ db_rebaseline:
 
 #######
 
-.PHONY: test clean venv
+
+.PHONY: all test clean venv
