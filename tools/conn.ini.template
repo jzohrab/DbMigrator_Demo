@@ -1,0 +1,29 @@
+# Mysql example settings.
+
+# Instructions:
+#
+# COPY this file and rename it to mysql_connections.ini, and fill in
+# the [Server] section.  Leave the [Databases] section as-is.
+#
+# The example will use this .template file as-is if an .ini file is
+# not found.
+
+########
+# Config
+
+# System connection used for operations such as db creation and
+# deletion.  Should have admin rights on the server.
+[Server]
+host = 'localhost'
+dbname = 'mysql'
+user = 'user'
+password = 'passwd'
+
+[Databases]
+
+  [[schema]]
+  host = 'localhost'
+  dbname = 'mysql_test'
+  user = 'user'
+  password = 'passwd'
+

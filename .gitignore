@@ -1,0 +1,8 @@
+*.pyc
+*.log
+
+# User create their own .ini file from **.ini.template
+*.ini
+
+# cruft
+zz*
