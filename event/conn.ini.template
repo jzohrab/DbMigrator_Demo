@@ -1,0 +1,10 @@
+# Mysql connection settings.
+
+# Instructions:
+#
+# COPY this file and rename it to conn.ini, and fill in your settings.
+
+host = 'localhost'
+dbname = 'mysql_test'
+user = 'user'
+password = 'passwd'
