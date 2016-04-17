@@ -1,5 +1,6 @@
 import unittest
 
+import event.repository
 from event.repository import Repository
 from event.model import Talk
 
@@ -17,3 +18,10 @@ class Talk_Tests(unittest.TestCase):
         self.assertEqual('Supertalk',t.title)
         self.assertEqual('John Smith',t.speaker)
 
+    def test_cant_save_the_same_talk_title_twice(self):
+        t1 = Talk()
+        t1.title = 'Supertalk'
+        t1.speaker = 'John Smith'
+        self.repo.save(t1)
+        with self.assertRaises(event.repository.DbException):
+            self.repo.save(t1)
