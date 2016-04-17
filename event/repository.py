@@ -20,15 +20,15 @@ class Repository(object):
         )
         return db
 
-    def __execute(self, sql):
+    def __execute(self, sql, prms):
         """Executes sql, Throws on error."""
         conn = self.__get_open_connection()
         conn.autocommit(True)
         cursor = conn.cursor()
         try:
-            cursor.execute(sql)
+            cursor.execute(sql, prms)
+            return cursor.fetchall()
         except Exception as e:
-            logger.error("Executing sql: %s"  % e)
             raise
         finally:
             cursor.close()
@@ -43,7 +43,6 @@ class Repository(object):
         if not os.path.exists(ini_file):
             raise Exception("Missing ini file at " + ini_file)
         c = ConfigObj(ini_file)
-        print c
         self.connection_hash = {
             'host': c['host'],
             'user': c['user'],
@@ -53,9 +52,16 @@ class Repository(object):
 
     def save(self, o):
         if type(o) == model.Talk:
-            print 'save talk'
+            sql = "insert into talk(talk_title, talk_speaker) values (%s, %s)"
+            self.__execute(sql, (o.title, o.speaker))
         else:
             raise ValueError('Don''t know how to save a {0}'.format(o))
 
     def get_talk(self, title):
-        return None
+        sql = "select * from talk where talk_title = %s"
+        d = self.__execute(sql, [title])[0]
+        t = model.Talk()
+        t.id = d[0]
+        t.title = d[1]
+        t.speaker = d[2]
+        return t

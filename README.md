@@ -34,3 +34,15 @@ $ python tools/migrate.py -nsu
 Optionally, you can use the different `make db_*` entries, see the Makefile.
 
 Run `python tools/migrate.py --help` to see a list of migration options.
+
+
+## Checking the database
+
+Log in as root, and connect to the db:
+
+```
+$ mysql -u root
+mysql> use mysql_test
+mysql> show tables;
+mysql> select * from talk
+```
