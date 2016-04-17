@@ -1,5 +1,8 @@
 # Model layer.
 
 class Talk(object):
-    def __init__(self, title, speaker):
-        pass
+
+    def __init__(self):
+        self.id = None
+        self.title = None
+        self.speaker = None
