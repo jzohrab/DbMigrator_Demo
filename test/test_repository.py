@@ -3,11 +3,14 @@ import unittest
 import event.repository
 from event.repository import Repository
 from event.model import Talk
+import db_helpers
 
 class Talk_Tests(unittest.TestCase):
 
     def setUp(self):
         self.repo = Repository()
+        h = db_helpers.Helpers()
+        h.clean_out_unittest_db()
 
     def test_smoke_test_can_save_and_retrieve_a_talk(self):
         t1 = Talk()
