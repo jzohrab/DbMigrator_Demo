@@ -5,6 +5,9 @@ import os
 from configobj import ConfigObj
 import model
 
+class DbException(Exception):
+    pass
+
 class Repository(object):
 
     #########
