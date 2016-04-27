@@ -27,3 +27,8 @@ class Talk_Tests(unittest.TestCase):
         self.repo.save(self.test_talk)
         with self.assertRaises(event.repository.DbException):
             self.repo.save(self.test_talk)
+
+    def test_can_get_all_talks(self):
+        self.repo.save(self.test_talk)
+        talks = self.repo.get_all_talks()
+        self.assertEqual(1, len(talks))

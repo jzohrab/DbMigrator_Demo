@@ -62,11 +62,18 @@ class Repository(object):
         else:
             raise ValueError('Don''t know how to save a {0}'.format(o))
 
+    def __create_talk(self, db_row):
+        # Worst ORM ever.
+        t = model.Talk()
+        t.id, t.title, t.speaker = db_row
+        return t
+
     def get_talk(self, title):
         sql = "select * from talk where talk_title = %s"
         d = self.__execute(sql, [title])[0]
-        t = model.Talk()
-        t.id = d[0]
-        t.title = d[1]
-        t.speaker = d[2]
-        return t
+        return self.__create_talk(d)
+
+    def get_all_talks(self):
+        sql = "select * from talk"
+        d = self.__execute(sql, [])
+        return map(self.__create_talk, d)
