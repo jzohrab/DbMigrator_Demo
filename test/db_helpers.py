@@ -4,6 +4,9 @@ import MySQLdb
 import os
 from configobj import ConfigObj
 
+import event.repository as repo
+import event.model as model
+
 class Helpers(object):
 
     #########
@@ -45,7 +48,26 @@ class Helpers(object):
             conn.close()
 
 
+
+    def seed_db(self):
+        """Load db with generic data for development.
+
+        Not a substitute for proper test setUp()."""
+        t = model.Talk()
+        t.title = 'Hodor'
+        t.speaker = 'Hodor'
+        r = repo.Repository()
+        r.save(t)
+
+
     # Test helper methods
 
     def clean_out_unittest_db(self):
         self.__execute('delete from talk', ())
+
+
+if __name__ == '__main__':
+    print 'Setting up test data'
+    h = Helpers()
+    h.clean_out_unittest_db()
+    h.seed_db()

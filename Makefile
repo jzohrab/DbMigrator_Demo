@@ -10,6 +10,9 @@ test_model:
 test_db:
 	python -m unittest test.test_repository
 
+seed:
+	python -m test.db_helpers
+
 # ==============
 # Database
 
@@ -47,6 +50,5 @@ db_rebaseline:
 	git mv schema/migrations/*.sql schema/old_migrations/
 
 #######
-
 
 .PHONY: all test clean venv
