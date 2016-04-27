@@ -53,12 +53,19 @@ class Helpers(object):
         """Load db with generic data for development.
 
         Not a substitute for proper test setUp()."""
-        t = model.Talk()
-        t.title = 'Hodor'
-        t.speaker = 'Hodor'
-        r = repo.Repository()
-        r.save(t)
 
+        r = repo.Repository()
+        data = [
+            ['Winter is Coming.', 'Ned Stark'],
+            ['Ouch!', 'Bran Stark'],
+            ['Ye Kner Nothin\', Jern Sner.', 'Ingrid'],
+            ['Hodor', 'Hodor']
+        ]
+        for d in data:
+            t = model.Talk()
+            t.title = d[0]
+            t.speaker = d[1]
+            r.save(t)
 
     # Test helper methods
 

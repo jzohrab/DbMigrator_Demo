@@ -12,13 +12,17 @@ talk content.
 per tools/conn.ini.template.
 2. Run the initial round of database migrations (see "Database migrations")
 3. Set up the application (note that this is a separate `virtualenv`
-from that in the `tools` directory).
+from that in the `tools` directory), seed it, and start the flask app.
 
 ```
 $ virtualenv venv
 $ source venv/bin/activate
 $ make init
+$ make seed
+$ make flask
 ```
+
+The flask app is viewable from http://localhost:5000/
 
 ## Database migrations
 

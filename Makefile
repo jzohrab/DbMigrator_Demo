@@ -1,17 +1,26 @@
+# Setup
 init:
 	pip install -r requirements.txt
 
+# Run all tests
 test:
 	python -m unittest discover
 
+# Run model-only tests
 test_model:
 	python -m unittest test.test_model
 
+# Run database-only tests
 test_db:
 	python -m unittest test.test_repository
 
+# Seed db with sensible dev data
 seed:
 	python -m test.db_helpers
+
+# Start the flask app
+flask:
+	python -m flaskapp.app
 
 # ==============
 # Database
