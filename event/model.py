@@ -6,3 +6,4 @@ class Talk(object):
         self.id = None
         self.title = None
         self.speaker = None
+        self.minutes = 0

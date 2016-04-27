@@ -57,23 +57,22 @@ class Repository(object):
 
     def save(self, o):
         if type(o) == model.Talk:
-            sql = "insert into talk(talk_title, talk_speaker) values (%s, %s)"
-            self.__execute(sql, (o.title, o.speaker))
+            sql = "insert into talk(talk_title, talk_speaker, talk_minutes) values (%s, %s, %s)"
+            self.__execute(sql, (o.title, o.speaker, o.minutes))
         else:
             raise ValueError('Don''t know how to save a {0}'.format(o))
 
     def __create_talk(self, db_row):
-        # Worst ORM ever.
         t = model.Talk()
-        t.id, t.title, t.speaker = db_row
+        t.id, t.title, t.speaker, t.minutes = db_row
         return t
 
     def get_talk(self, title):
-        sql = "select * from talk where talk_title = %s"
+        sql = "select talk_id, talk_title, talk_speaker, talk_minutes from talk where talk_title = %s"
         d = self.__execute(sql, [title])[0]
         return self.__create_talk(d)
 
     def get_all_talks(self):
-        sql = "select * from talk"
+        sql = "select talk_id, talk_title, talk_speaker, talk_minutes from talk"
         d = self.__execute(sql, [])
         return map(self.__create_talk, d)

@@ -15,6 +15,7 @@ class Talk_Tests(unittest.TestCase):
         t = Talk()
         t.title = 'Supertalk'
         t.speaker = 'John Smith'
+        t.minutes = 5
         self.test_talk = t
 
     def test_smoke_test_can_save_and_retrieve_a_talk(self):
