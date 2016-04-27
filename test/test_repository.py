@@ -12,19 +12,18 @@ class Talk_Tests(unittest.TestCase):
         h = db_helpers.Helpers()
         h.clean_out_unittest_db()
 
+        t = Talk()
+        t.title = 'Supertalk'
+        t.speaker = 'John Smith'
+        self.test_talk = t
+
     def test_smoke_test_can_save_and_retrieve_a_talk(self):
-        t1 = Talk()
-        t1.title = 'Supertalk'
-        t1.speaker = 'John Smith'
-        self.repo.save(t1)
+        self.repo.save(self.test_talk)
         t = self.repo.get_talk('Supertalk')
         self.assertEqual('Supertalk',t.title)
         self.assertEqual('John Smith',t.speaker)
 
     def test_cant_save_the_same_talk_title_twice(self):
-        t1 = Talk()
-        t1.title = 'Supertalk'
-        t1.speaker = 'John Smith'
-        self.repo.save(t1)
+        self.repo.save(self.test_talk)
         with self.assertRaises(event.repository.DbException):
-            self.repo.save(t1)
+            self.repo.save(self.test_talk)
