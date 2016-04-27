@@ -56,15 +56,16 @@ class Helpers(object):
 
         r = repo.Repository()
         data = [
-            ['Winter is Coming.', 'Ned Stark'],
-            ['Ouch!', 'Bran Stark'],
-            ['Ye Kner Nothin\', Jern Sner.', 'Ingrid'],
-            ['Hodor', 'Hodor']
+            ['Winter is Coming.', 'Ned Stark', 45],
+            ['Ouch!', 'Bran Stark', 5],
+            ['Ye Kner Nothin\', Jern Sner.', 'Ingrid', 10],
+            ['Hodor', 'Hodor', 1]
         ]
         for d in data:
             t = model.Talk()
             t.title = d[0]
             t.speaker = d[1]
+            t.minutes = d[2]
             r.save(t)
 
     # Test helper methods
