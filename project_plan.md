@@ -1,24 +1,31 @@
 # Project plan
 
-- Add talk (talk, description, speaker, duration)
-- browse talks
-- Add slots (date, time, duration)
-- Get candidates
+## 1. POC
 
-- new feature: talk ratings - easy, medium, hard (baseline data)
-- add to cli
-
-- view for possible talks per slot (filtered by difficulty)
-- introduce "code objects" - _don't_ want these to be `drop/recreate/alter`
-  - dev A wants to sort by difficulty, dev B wants to add the duration
+- Add talk (title, speaker, duration)
+- view talks
 
 - launch to prod
 - baselining
 
-- new feature: slot max difficulty
+
+## 2. Add feature, compatability tests
+
+- new feature: talk ratings - easy, medium, hard (baseline data)
 - new delta
+- add to cli
 - launch DB changes to prod ahead of time
 - backwards compatibility tests
+
+
+## 3. Code objects
+
+- view for difficult talks
+- introduce "code objects" - _don't_ want these to be `drop/recreate/alter`
+  - dev A wants to sort by difficulty, dev B wants to add the duration
+
+
+## 4. Refactoring
 
 - refactoring: change the speaker to speaker_first, speaker_last
 - want to launch the db changes ahead of time, and so can't drop the old field; also may have other clients
@@ -26,12 +33,9 @@
 - tests ok?
 - same process as before, backwards compat testing
 
+
+## 5. Scheduling future changes
+
 - have accumulated cruft - so, schedule a change upcoming, committed into the schema as "upcoming"
 - test forwards compatibility - try applying the db change to the schema, and run tests
 
-
-- dba changes:
-- base knowledge, or script to test out a change
-
-- encapsulation of db
-- multiple clients sharing db - APIs belong with the DB project, not with the clients
