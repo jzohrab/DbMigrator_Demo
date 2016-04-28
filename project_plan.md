@@ -2,11 +2,11 @@
 
 ## 1. POC
 
-- Add talk (title, speaker, duration)
-- view talks
+OK - Add talk (title, speaker, duration)
+OK - view talks
 
-- launch to prod
-- baselining
+OK - launch to prod
+OK - rebaselining
 
 
 ## 2. Add feature, compatability tests
