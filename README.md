@@ -50,3 +50,24 @@ mysql> use mysql_test
 mysql> show tables;
 mysql> select * from talk
 ```
+
+## Backwards- and forwards-compatibility testing
+
+Definitions:
+
+**Backwards-compatibility testing** is when you have database changes
+in the development branch that should be released into production
+_ahead_ of the accompanying code.  These database changes need to be
+backwards compatible with the code currently running in prod.
+
+**Forwards-compatibility testing** is when you have database changes
+scheduled several weeks or months in the future (e.g., to clean up
+remnants of database refactoring).  Existing code, including code in
+the development branch, will need to work with those pending changes
+at some point in the future, but perhaps not immediately.
+
+There are two scripts to demonstrate setting up your environment for
+both of these tests:
+
+* `test/setup_compat_test.sh`: for backwards-compatibility testing
+* `tools/setup_forward_compat_work_env.sh`: for forwards-compat work
