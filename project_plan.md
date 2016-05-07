@@ -20,9 +20,9 @@ OK - backwards compatibility tests
 
 ## 3. Code objects
 
-- view for difficult talks
-- introduce "code objects" - _don't_ want these to be `drop/recreate/alter`
-  - dev A wants to sort by difficulty, dev B wants to add the duration
+OK - view for difficult talks
+OK - introduce "code objects" - _don't_ want these to be `drop/recreate/alter`
+     - dev A wants to sort by difficulty, dev B wants to add the duration
 
 
 ## 4. Refactoring
