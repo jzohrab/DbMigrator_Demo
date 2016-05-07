@@ -16,13 +16,14 @@
 
 	<table>
 	  <tr>
-	    <th>Speaker</th><th>Title</th><th>Mins.</th>
+	    <th>Speaker</th><th>Title</th><th>Mins.</th><th>Diff.</th>
 	  </tr>
 	  {% for t in result %}
 	  <tr>
             <td> {{ t.speaker }} </th>
             <td> {{ t.title }} </td>
 	    <td> {{ t.minutes }} </td>
+	    <td> {{ t.difficulty }} </td>
 	  </tr>
 	  {% endfor %}
 	</table>
