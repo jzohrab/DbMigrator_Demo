@@ -31,7 +31,7 @@ class Helpers(object):
         )
         return db
 
-    def __execute(self, sql, prms):
+    def execute(self, sql, prms):
         """Executes sql, Throws on error."""
         conn = self.__get_open_connection()
         conn.autocommit(True)
@@ -72,7 +72,7 @@ class Helpers(object):
     # Test helper methods
 
     def clean_out_unittest_db(self):
-        self.__execute('delete from talk', ())
+        self.execute('delete from talk', ())
 
 
 if __name__ == '__main__':
