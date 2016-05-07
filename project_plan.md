@@ -27,11 +27,11 @@ OK - introduce "code objects" - _don't_ want these to be `drop/recreate/alter`
 
 ## 4. Refactoring
 
-- refactoring: change the speaker to speaker_first, speaker_last
-- want to launch the db changes ahead of time, and so can't drop the old field; also may have other clients
-- add trigger to table: insert to 'speaker' should go to speaker_first and _last
-- tests ok?
-- same process as before, backwards compat testing
+OK - refactoring: change the speaker to speaker_first, speaker_last
+OK - want to launch the db changes ahead of time, and so can't drop the old field; also may have other clients
+OK - add trigger to table: insert to 'speaker' should go to speaker_first and _last
+OK - tests ok?
+OK - same process as before, backwards compat testing
 
 
 ## 5. Scheduling future changes

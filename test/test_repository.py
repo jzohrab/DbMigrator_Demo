@@ -14,7 +14,8 @@ class Talk_Tests(unittest.TestCase):
 
         t = Talk()
         t.title = 'Supertalk'
-        t.speaker = 'John Smith'
+        t.speaker_first = 'John'
+        t.speaker_last = 'Smith'
         t.minutes = 5
         t.difficulty = 'high'
         self.test_talk = t

@@ -11,7 +11,7 @@ class Talk_Tests(unittest.TestCase):
         self.assertEqual('Supertalk',t1.title)
 
     def test_get_set_speaker(self):
-        # This is not a useful test!
         t1 = Talk()
-        t1.speaker = 'John Smith'
+        t1.speaker_first = 'John'
+        t1.speaker_last = 'Smith'
         self.assertEqual('John Smith',t1.speaker)
