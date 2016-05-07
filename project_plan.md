@@ -11,11 +11,11 @@ OK - rebaselining
 
 ## 2. Add feature, compatability tests
 
-- new feature: talk ratings - easy, medium, hard (baseline data)
-- new delta
-- add to cli
-- launch DB changes to prod ahead of time
-- backwards compatibility tests
+OK - new feature: talk ratings - easy, medium, hard (baseline data)
+OK - new delta
+OK - add to cli
+OK - launch DB changes to prod ahead of time
+OK - backwards compatibility tests
 
 
 ## 3. Code objects
