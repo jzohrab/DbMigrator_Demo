@@ -56,17 +56,18 @@ class Helpers(object):
 
         r = repo.Repository()
         data = [
-            ['Winter is Coming.', 'Ned Stark', 45, 'high'],
-            ['Ouch!', 'Bran Stark', 5, 'low'],
-            ['Ye Kner Nothin\', Jern Sner.', 'Ingrid', 10, 'medium'],
-            ['Hodor', 'Hodor', 1, 'low']
+            ['Winter is Coming.', 'Ned', 'Stark', 45, 'high'],
+            ['Ouch!', 'Bran', 'Stark', 5, 'low'],
+            ['Ye Kner Nothin\', Jern Sner.', 'Ingrid', '', 10, 'medium'],
+            ['Hodor', 'Hodor', '', 1, 'low']
         ]
         for d in data:
             t = model.Talk()
             t.title = d[0]
-            t.speaker = d[1]
-            t.minutes = d[2]
-            t.difficulty = d[3]
+            t.speaker_first = d[1]
+            t.speaker_last = d[2]
+            t.minutes = d[3]
+            t.difficulty = d[4]
             r.save(t)
 
     # Test helper methods
