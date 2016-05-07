@@ -55,24 +55,28 @@ class Repository(object):
             'dbname': c['dbname']
         }
 
+    __talk_insert = """insert into talk(talk_title, talk_speaker, talk_minutes, difficulty_id)
+      values (%s, %s, %s, (select difficulty_id from difficulty where difficulty_name = %s))"""
+
+    __talk_select = """select
+      t.talk_id, t.talk_title, t.talk_speaker, t.talk_minutes, d.difficulty_name
+      from talk t inner join difficulty d on d.difficulty_id = t.difficulty_id"""
+
     def save(self, o):
         if type(o) == model.Talk:
-            sql = "insert into talk(talk_title, talk_speaker, talk_minutes) values (%s, %s, %s)"
-            self.__execute(sql, (o.title, o.speaker, o.minutes))
+            self.__execute(Repository.__talk_insert, (o.title, o.speaker, o.minutes, o.difficulty))
         else:
             raise ValueError('Don''t know how to save a {0}'.format(o))
 
     def __create_talk(self, db_row):
         t = model.Talk()
-        t.id, t.title, t.speaker, t.minutes = db_row
+        t.id, t.title, t.speaker, t.minutes, t.difficulty = db_row
         return t
 
     def get_talk(self, title):
-        sql = "select talk_id, talk_title, talk_speaker, talk_minutes from talk where talk_title = %s"
-        d = self.__execute(sql, [title])[0]
+        d = self.__execute(Repository.__talk_select + ' where talk_title = %s', [title])[0]
         return self.__create_talk(d)
 
     def get_all_talks(self):
-        sql = "select talk_id, talk_title, talk_speaker, talk_minutes from talk"
-        d = self.__execute(sql, [])
+        d = self.__execute(Repository.__talk_select, [])
         return map(self.__create_talk, d)

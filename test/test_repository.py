@@ -16,6 +16,7 @@ class Talk_Tests(unittest.TestCase):
         t.title = 'Supertalk'
         t.speaker = 'John Smith'
         t.minutes = 5
+        t.difficulty = 'high'
         self.test_talk = t
 
     def test_smoke_test_can_save_and_retrieve_a_talk(self):
@@ -23,6 +24,7 @@ class Talk_Tests(unittest.TestCase):
         t = self.repo.get_talk('Supertalk')
         self.assertEqual('Supertalk',t.title)
         self.assertEqual('John Smith',t.speaker)
+        self.assertEqual('high',t.difficulty)
 
     def test_cant_save_the_same_talk_title_twice(self):
         self.repo.save(self.test_talk)

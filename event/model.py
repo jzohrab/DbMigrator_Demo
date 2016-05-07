@@ -7,3 +7,4 @@ class Talk(object):
         self.title = None
         self.speaker = None
         self.minutes = 0
+        self.difficulty = 'medium'
