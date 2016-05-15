@@ -3,20 +3,23 @@ init:
 	pip install -r requirements.txt
 
 # Run all tests
-test:
+test: clean
 	python -m unittest discover
 
 # Run model-only tests
-test_model:
+test_model: clean
 	python -m unittest test.test_model
 
 # Run database-only tests
-test_db:
+test_db: clean
 	python -m unittest test.test_repository
 
 # Seed db with sensible dev data
 seed:
 	python -m test.db_helpers
+
+clean:
+	find . -name '*.pyc' -exec rm -f {} +
 
 # Start the flask app
 flask:
