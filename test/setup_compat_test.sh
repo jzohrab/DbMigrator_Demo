@@ -46,9 +46,19 @@ fi
 code_sha="$1"
 db_sha="$2"
 
-git checkout $db_sha --detach
-mv schema tmp_proposed_schema
-git checkout $code_sha --detach
-mv tmp_proposed_schema schema
+echo Checking out database as at $db_sha
+git checkout $db_sha --detach 2>/dev/null
+echo Storing schema
+mv schema tmp_proposed_schema > /dev/null
+echo Checking out code as at $code_sha
+git checkout $code_sha --detach 2>/dev/null
+echo Replacing schema with schema from $db_sha
+mv tmp_proposed_schema schema > /dev/null
+echo
+echo Rebuild and run all tests.
+# If anything fails, checkout and fix the db_sha branch.
+make db_all
+git clean -f >/dev/null
+make test
 
-echo "Now recreate the db and run the tests."
+git checkout $db_sha
