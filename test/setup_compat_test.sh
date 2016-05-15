@@ -40,9 +40,9 @@ fi
 code_sha="$1"
 db_sha="$2"
 
-git checkout $db_sha
+git checkout $db_sha --detach
 mv schema tmp_proposed_schema
-git checkout $code_sha
+git checkout $code_sha --detach
 mv tmp_proposed_schema schema
 
 echo "Now recreate the db and run the tests."
