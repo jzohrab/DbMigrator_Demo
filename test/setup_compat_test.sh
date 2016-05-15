@@ -27,6 +27,12 @@ Example:
 
   $ $0 2f5984 e227c9
 
+You can also use branch names:
+
+  Branch currently in prod: master
+  Branch of dev db schema:  development
+
+  $ $0 master development
 
 EOF
     exit 1
