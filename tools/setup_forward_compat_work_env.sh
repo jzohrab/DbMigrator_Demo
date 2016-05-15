@@ -37,18 +37,18 @@ fi
 
 pending_branch="$1"
 
+# Merge, ensure fail on error.
+set -e  # needs testing to ensure this actually works as expected
+        # ref gotchas at http://mywiki.wooledge.org/BashFAQ/105
 git merge $pending_branch --no-ff --no-commit
-git reset HEAD
-python migrate.py -m
 
-# Schema changes are in the parent folder's subfolders.
-pushd ..
-git clean -f
-popd
+# Update db with pending changes.  Errors here will result in
+# dirty git tree, may need to 'git reset --hard HEAD'
+make db_update
 
-cat <<EOF
-Fix any db build issues, and rerun this script.
-If there were no db-build issues, run the unit tests.
-If all tests pass, this branch is assumed to be
-forwards-compatible with the database changes.
-EOF
+# Drop the changes ASAP
+git reset --hard HEAD
+
+# Run tests.  If these pass, this code is forward-compatible with the
+# pending changes.
+make test
