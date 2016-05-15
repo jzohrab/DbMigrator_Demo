@@ -22,14 +22,15 @@ $ make init
 
 ## Database migrations
 
-The database migrations are handled with DbMigrator, run in a
-virtualenv in `tools`.
+The database migrations are handled with DbMigrator from the project root.
 
 Set everything up and run the first round of migrations:
 
 ```
-$ virtualenv venv
-$ source venv/bin/activate
-$ make init
+# Assuming that venv is set up:
 $ python tools/migrate.py -nsu
 ```
+
+Optionally, you can use the different `make db_*` entries, see the Makefile.
+
+Run `python tools/migrate.py --help` to see a list of migration options.
